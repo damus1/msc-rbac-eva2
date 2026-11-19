@@ -11,7 +11,7 @@ Cualquier integrante debe poder responder estas preguntas sin mirar el informe. 
 | ¿Por qué así? | Es lo que un equipo de 6 puede construir y defender en un semestre, y cumple la regla del cliente: «la pregunta y la respuesta siguen siendo las mismas». |
 | ¿Qué datos usa? | Colaboradores sincronizados desde AD, cuentas con la clave en *hash*, perfiles con versiones, excepciones con vencimiento, una lista de permisos ya calculada y una bitácora que no se puede borrar. |
 | ¿Quién puede hacer qué? | Administrador TI gestiona todo; Colaborador solo ve lo suyo. Nadie aprueba lo que creó y nadie se da permisos a sí mismo. |
-| ¿Cómo sabremos que funciona? | 51 casos de prueba (funcionales, negativos y de seguridad) y 4 escenarios de carga con 600 usuarios simultáneos. Cada requisito tiene al menos una prueba. |
+| ¿Cómo sabremos que funciona? | 51 casos de prueba (funcionales, negativos y de seguridad) y 4 escenarios de carga, hasta 600 consultas simultáneas (unos 300 usuarios en hora punta). Cada requisito tiene al menos una prueba. |
 
 Fuente: Elaboración propia (2026).
 

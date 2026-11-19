@@ -8,7 +8,7 @@
 - La matriz de roles y permisos del equipo (informe, sección 9): saber decir qué puede y qué no puede cada rol.
 - Que la regla de aprobación exige **al menos dos administradores** (riesgo R-13).
 - La tabla de contraseñas «antes y ahora», y la política: *hash* irreversible, mínimo 12 caracteres, bloqueo tras 5 intentos, enlace de un solo uso que vence a los 15 minutos y cierre de sesión por inactividad (15 minutos) y por duración máxima (8 horas).
-- Las cifras del plan de pruebas: 23 funcionales, 12 negativas, 16 de seguridad (51 en total) y 4 escenarios de carga con 600 usuarios.
+- Las cifras del plan de pruebas: 23 funcionales, 12 negativas, 16 de seguridad (51 en total) y 4 escenarios de carga, hasta 600 consultas simultáneas (unos 300 usuarios en hora punta).
 - Cómo se lee un caso de prueba: precondición, pasos y resultado observable. Tengan uno memorizado (CP-06 o CP-34).
 - La cadena de trazabilidad completa con el ejemplo de «Mis permisos».
 
@@ -39,7 +39,7 @@ CP-34: un administrador crea una solicitud e intenta aprobarla desde la pantalla
 CP-28: dos administradores modifican al mismo usuario desde dos instancias distintas al mismo tiempo. Una operación se aplica y la otra recibe 409.
 
 **¿Cómo van a medir el rendimiento si no tienen los servidores del cliente?**
-En el ambiente local, con escalones de 150, 300 y 600 usuarios simultáneos. Informaremos la carga máxima que cumple la meta, y la compararemos con la producción cuando el cliente confirme los servidores y la frecuencia real de consultas.
+En el ambiente local, con escalones de 150, 300 y 600 consultas simultáneas. Informaremos la carga máxima que cumple la meta, y la compararemos con la producción cuando el cliente confirme los servidores y la frecuencia real de consultas.
 
 **¿Qué ocurre si eliminamos la bitácora?**
 Se pierde la necesidad N-06, saber quién concedió cada acceso, y con ella la respuesta ante auditorías, que era una de las consecuencias graves del diagnóstico.
