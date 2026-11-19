@@ -503,42 +503,57 @@ Guion (Bloque 5):
 
 # <span class="i-mdi-shield-account-outline align-middle mr-2 text-brand-red" /> Seguridad: quién puede hacer qué
 
-<div class="grid grid-cols-[1fr_1.15fr] gap-4 mt-2 text-xs">
+<div class="grid grid-cols-[1.25fr_1fr] gap-4 mt-2 text-xs">
 
 <div class="flex flex-col gap-2">
-  <div class="card p-3 border-l-4 border-brand-red"><b class="text-brand-red-dark text-sm">Administrador TI</b><br />Gestiona accesos, perfiles, excepciones y bitácora.</div>
-  <div class="card p-3 border-l-4 border-brand-navy"><b class="text-brand-navy-dark text-sm">Colaborador</b><br />Solo ve sus permisos y cambia su clave. Los pasantes de TI también son colaboradores.</div>
-  <div class="card p-3 border-t-3 border-brand-crimson">
-    <b class="text-brand-crimson">Reglas que la API siempre aplica</b>
-    <ul class="mt-1 space-y-1 text-ink/85">
-      <li>Nadie aprueba lo que él mismo creó.</li>
-      <li>Nadie se da permisos ni roles a sí mismo.</li>
-      <li>Ocultar un botón no basta: todo se valida en el servidor.</li>
-    </ul>
+  <div class="grid grid-cols-2 gap-2">
+    <div class="card p-2.5 border-l-4 border-brand-red"><b class="text-brand-red-dark">Administrador TI</b><br />Gestiona accesos, perfiles y excepciones.</div>
+    <div class="card p-2.5 border-l-4 border-brand-navy"><b class="text-brand-navy-dark">Colaborador</b><br />Ve sus permisos. Incluye a los pasantes de TI.</div>
+  </div>
+  <div class="card p-2.5">
+    <div class="font-bold text-brand-navy-dark mb-1.5 flex items-center gap-1.5"><div class="i-mdi-table-key" /> Matriz de permisos</div>
+    <table class="w-full text-xs">
+      <thead><tr><th class="text-left">Acción</th><th class="whitespace-nowrap">Admin. TI</th><th>Colaborador</th></tr></thead>
+      <tbody>
+        <tr><td>Ver sus propios permisos</td><td class="text-center">✓</td><td class="text-center">✓</td></tr>
+        <tr><td>Ver permisos de otras personas</td><td class="text-center">✓</td><td class="text-center">✗</td></tr>
+        <tr><td>Asignar perfiles, clonar, dar de baja</td><td class="text-center">✓ ²</td><td class="text-center">✗</td></tr>
+        <tr><td>Solicitar y aprobar excepciones</td><td class="text-center">✓ ¹ ²</td><td class="text-center">✗</td></tr>
+        <tr><td>Consultar la bitácora</td><td class="text-center">✓</td><td class="text-center">✗</td></tr>
+        <tr><td>Modificar o borrar la bitácora</td><td class="text-center">✗</td><td class="text-center">✗</td></tr>
+      </tbody>
+    </table>
+    <div class="mt-1 text-ink-soft">¹ No aprueba lo que él creó · ² Nunca sobre sí mismo · Lo demás está denegado.</div>
   </div>
 </div>
 
-<div class="card p-3">
-  <div class="font-bold text-brand-navy-dark mb-2 flex items-center gap-1.5"><div class="i-mdi-key-chain-variant" /> Contraseñas: antes y ahora</div>
-  <table class="w-full text-xs">
-    <thead><tr><th class="text-left">Sistema actual</th><th class="text-left">Nuevo diseño</th></tr></thead>
-    <tbody>
-      <tr><td>Se puede ver en pantalla</td><td>Nadie la ve, ni TI</td></tr>
-      <tr><td>Guardada de forma reversible</td><td>Guardada como hash irreversible</td></tr>
-      <tr><td>Suele ser «nombre.apellido»</td><td>Mínimo 12 caracteres, sin datos personales</td></tr>
-      <tr><td>Sin límite de intentos</td><td>Bloqueo tras 5 intentos</td></tr>
-      <tr><td>La entrega TI</td><td>La crea la persona con un enlace</td></tr>
-    </tbody>
-  </table>
+<div class="flex flex-col gap-2">
+  <div class="card p-2.5">
+    <div class="font-bold text-brand-navy-dark mb-1.5 flex items-center gap-1.5"><div class="i-mdi-key-chain-variant" /> Contraseñas: antes y ahora</div>
+    <table class="w-full text-xs">
+      <thead><tr><th class="text-left">Sistema actual</th><th class="text-left">Nuevo diseño</th></tr></thead>
+      <tbody>
+        <tr><td>Se puede ver en pantalla</td><td>Nadie la ve, ni TI</td></tr>
+        <tr><td>Guardada de forma reversible</td><td>Hash irreversible</td></tr>
+        <tr><td>Suele ser «nombre.apellido»</td><td>Mínimo 12 caracteres</td></tr>
+        <tr><td>Sin límite de intentos</td><td>Bloqueo tras 5 intentos</td></tr>
+        <tr><td>La entrega TI</td><td>La crea la persona con un enlace</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card p-2.5 border-t-3 border-brand-crimson">
+    <b class="text-brand-crimson">Ocultar un botón no basta</b>
+    <div class="text-ink/85 mt-0.5">Cada acción se vuelve a verificar en el servidor.</div>
+  </div>
 </div>
 
 </div>
 
 <!--
 Guion (Bloque 6):
-"El portal tiene dos roles, los que definió el cliente: Administrador TI, que gestiona todo, y Colaborador, que solo ve sus permisos; los pasantes de TI quedan como colaboradores.
-La separación de funciones que nos pidió en el feedback la resolvemos con reglas que la API siempre aplica. La primera: nadie aprueba lo que él mismo creó. Por eso necesitamos al menos dos administradores.
-A la derecha, el cambio más visible: las contraseñas. En el sistema actual se ven y se pueden revertir. En el nuevo nadie las ve, se guardan de forma irreversible y la cuenta se bloquea si alguien intenta adivinarla."
+"El portal tiene dos roles para personas, los que definió el cliente: el Administrador TI, que gestiona los accesos, y el Colaborador, que solo ve sus permisos; los pasantes de TI quedan como colaboradores.
+En la matriz se ve qué puede hacer cada uno. Todo lo que no aparece está denegado. La separación de funciones que nos pidió en el feedback está en las notas de la tabla: nadie aprueba lo que él mismo creó y nadie se modifica a sí mismo. Por eso el sistema necesita al menos dos administradores. Y ocultar un botón es solo una ayuda: cada acción se vuelve a verificar en el servidor.
+A la derecha, el cambio más visible: las contraseñas. Hoy se ven y se pueden revertir. En el nuevo diseño nadie las ve, se guardan de forma irreversible y la persona crea la suya con un enlace."
 -->
 
 ---
@@ -554,16 +569,16 @@ A la derecha, el cambio más visible: las contraseñas. En el sistema actual se 
   <div class="card p-3 text-center border-t-3 border-brand-navy"><div class="text-2xl font-extrabold text-brand-navy">23</div><div class="text-ink-soft">casos de que <b>funciona</b></div></div>
   <div class="card p-3 text-center border-t-3 border-brand-red"><div class="text-2xl font-extrabold text-brand-red">12</div><div class="text-ink-soft">casos de que <b>rechaza</b> lo incorrecto</div></div>
   <div class="card p-3 text-center border-t-3 border-brand-crimson"><div class="text-2xl font-extrabold text-brand-crimson">16</div><div class="text-ink-soft">casos de <b>seguridad</b></div></div>
-  <div class="card p-3 text-center border-t-3 border-slate-500"><div class="text-2xl font-extrabold text-ink">4</div><div class="text-ink-soft">escenarios de <b>carga</b> con 600 usuarios</div></div>
+  <div class="card p-3 text-center border-t-3 border-slate-500"><div class="text-2xl font-extrabold text-ink">4</div><div class="text-ink-soft">escenarios de <b>carga</b>, hasta 600 consultas simultáneas</div></div>
 </div>
 
 <div class="grid grid-cols-2 gap-3 mt-3 text-xs">
   <div class="card p-3 border-l-4 border-brand-red">
-    <div class="font-bold text-brand-red-dark mb-1">Ejemplo · CP-06: despido</div>
+    <div class="font-bold text-brand-red-dark mb-1">Ejemplo · CP-06 · RF-12: despido</div>
     <div class="text-ink/85"><b>Dado</b> un colaborador con permisos, <b>cuando</b> desaparece del directorio, <b>entonces</b> en 10 minutos o menos queda sin acceso, las 37 apps no reciben sus permisos y queda registrado.</div>
   </div>
   <div class="card p-3 border-l-4 border-brand-navy">
-    <div class="font-bold text-brand-navy-dark mb-1">Ejemplo · CP-34: aprobarse a sí mismo</div>
+    <div class="font-bold text-brand-navy-dark mb-1">Ejemplo · CP-34 · RF-11 y RF-15: aprobarse a sí mismo</div>
     <div class="text-ink/85"><b>Dado</b> un administrador que creó una solicitud, <b>cuando</b> intenta aprobarla, <b>entonces</b> el sistema la rechaza, sigue pendiente y el intento queda registrado.</div>
   </div>
 </div>
@@ -572,8 +587,8 @@ A la derecha, el cambio más visible: las contraseñas. En el sistema actual se 
 
 <!--
 Guion (Bloque 6):
-"El plan tiene 51 casos de prueba: 23 que verifican que cada función hace lo que promete, 12 que verifican que el sistema rechaza lo incorrecto sin cambiar nada, y 16 de seguridad. Además hay cuatro escenarios de carga con los 600 usuarios simultáneos que nos indicó el cliente.
-Cada caso tiene un resultado que se puede comprobar sin interpretación. Por ejemplo, si una persona desaparece del directorio, en 10 minutos o menos debe quedar sin acceso. O si un administrador intenta aprobar su propia solicitud, el sistema la rechaza. Todo requisito tiene al menos una prueba, y los resultados los mostraremos en la EVA 3."
+"El plan tiene 51 casos de prueba: 23 que verifican que cada función hace lo que promete, 12 que verifican que el sistema rechaza lo incorrecto sin cambiar nada, y 16 de seguridad. Además hay cuatro escenarios de carga: según el cliente, en hora punta unos 300 usuarios generan unas 600 consultas simultáneas, y la prueba sube por escalones hasta ese nivel.
+Cada caso tiene un resultado que se puede comprobar sin interpretación. Y cada caso está vinculado a un requisito. Por ejemplo, el CP-06 prueba el RF-12: si una persona desaparece del directorio, en 10 minutos o menos debe quedar sin acceso. El CP-34 prueba la separación de funciones: si un administrador intenta aprobar su propia solicitud, el sistema la rechaza. Todo requisito tiene al menos una prueba, y los resultados los mostraremos en la EVA 3."
 -->
 
 ---
